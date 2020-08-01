@@ -107,14 +107,13 @@
             if (sceneNum == 1) {
                 $('.card-header').text("Overview");
                 
-                document.getElementById("scene_description").innerHTML = "In order to investigate the connection between the change in population size and the "+
-                "change in the difference in income between the richest and poorest people we have constructed a graph plotting "+
-                "the change in income level over 10 years from the population size over 10 years (from 1988 to 2008). It is expected"+
-                " that in the case of such a link, the countries with the largest change in the population level would have the "+
-                "greatest change in the difference in incomes of the population. But the graph shows that this dependence is absent,"+
+                document.getElementById("scene_description").innerHTML = "Scatter chart is plotted to visulaize relation between the population change and the "+
+                "change in the income differnce between the wealthy and poor over the period of 10 years (from 1988 to 2008)."+
+                "It is expected the countries with the largest change in the population level would have the "+
+                "higher change in the difference in incomes of the population. But the graph shows that this dependence is absent,"+
                 " because the scatter of countries is not dependent on these 2 parameters." +
-                "The graph highlights 3 countries that most clearly demonstrate this. You can exhaust these countries in more "+
-                "detail both in absolute and relative values.";
+                "The graph highlights 3 countries that most clearly demonstrate this. More details is visulized in  "+
+                "in absolute and relative values with bar and line chart respectively.";
 
                 document.getElementById('subscene_prev_btn').style.visibility = "hidden";
                 document.getElementById('subscene_next_btn').style.visibility = "hidden";
@@ -128,7 +127,7 @@
             if (sceneNum == 2) {
                 $('.card-header').text("Absolute values comparison for " + country);
                 
-                document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the absolute level of change in population and the absolute level of change in income between the poorest and richest segments of the population.";
+                document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the absolute level of change in population and the absolute level of change in income between the poor and rich segments of the population.";
                 document.getElementById('subscene_prev_btn').style.visibility = "visible";
                 document.getElementById('subscene_next_btn').style.visibility = "visible";
                 document.getElementById('scene1_btn').style.visibility = "visible";
@@ -141,7 +140,7 @@
             if (sceneNum == 3) {
                 $('.card-header').text("Relative values comparison for " + country);
                 
-                document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the relative level of change in population and the relative level of change in income between the poorest and richest segments of the population.";
+                document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the relative level of change in population and the relative level of change in income between the poor and rich segments of the population.";
                 document.getElementById('subscene_prev_btn').style.visibility = "visible";
                 document.getElementById('subscene_next_btn').style.visibility = "visible";
                 document.getElementById('scene1_btn').style.visibility = "visible";
@@ -283,7 +282,7 @@
                         x: 550,
                         y: 210,
                         dy: -100,
-                        dx: 100
+                        dx: 200
                     }
                 ]
 
@@ -300,7 +299,7 @@
                 var annotation_China = [
                     {
                         note: {
-                            label: "low changes in population but extremely hight changes in income difference",
+                            label: "low changes in population but extremely high changes in income difference",
                             title: "China",
                             align: "right",
                         },
@@ -331,7 +330,7 @@
                 var annotation_USA = [
                     {
                         note: {
-                            label: "low changes in population but hight changes in income difference",
+                            label: "low changes in population but high change in income difference",
                             title: "USA",
                             align: "left",
                         },
@@ -570,7 +569,7 @@
                         if (i == 3) {
                             return {
                                 note: {
-                                    label: "Green box - income of the richest, blue box - income of the poorest people",
+                                    label: "Green box - income of the wealthy, blue box - income of the poor people",
                                     //title: d.x,
                                     align: "right",
                                     orientation: "fixed"
@@ -803,7 +802,7 @@
                         if (i == 1) {
                             return {
                                 note: {
-                                    label: "as we can see, it not depends on population changes",
+                                    label: "It does not depends on population changes",
                                     title: "Income difference changes",
                                     align: "left",
                                     wrap: 300,
