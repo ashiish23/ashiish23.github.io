@@ -14,19 +14,20 @@
     <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
     <style>
 
-        circle {fill: Green; stroke: black;}
+        circle {fill: lightgreen; stroke: black;}
         .annotation-note-label {
             font-size: 13px;
             font-family: Georgia, "Times New Roman", Times, serif;;
         }
 
         circle#China, circle#Nigeria, circle[id="United States"] {
-            fill: Orange;
+            fill: chocolate;
         }
 
         .container, .navbar {
             min-width: 1140px;
         }
+
 
     </style>
   </head>
@@ -51,8 +52,8 @@
                 </div>
                 <div class=".text-center">
                     <button type="button" class="btn btn-primary btn-sm scene-btn" id="scene1_btn" data-scene-num="1">Overview</button>
-                    <button type="button" class="btn btn-success btn-sm scene-btn" id="scene2_btn" data-scene-num="2">Absolute values Comparison</button>
-                    <button type="button" class="btn btn-success btn-sm scene-btn" id="scene3_btn" data-scene-num="3">Relative values Comparison</button>
+                    <button type="button" class="btn btn-success btn-sm scene-btn" id="scene2_btn" data-scene-num="2">Absolute Comparison</button>
+                    <button type="button" class="btn btn-success btn-sm scene-btn" id="scene3_btn" data-scene-num="3">Relative Comparison</button>
                     
                     <button type="button" class="btn btn-secondary btn-sm" id="subscene_prev_btn" data-scene-num="1"> Previous</button>
                     <button type="button" class="btn btn-secondary btn-sm" id="subscene_next_btn" data-scene-num="2">Next</button>           
@@ -104,7 +105,7 @@
             d3.select("svg").html('');
             
             if (sceneNum == 1) {
-                $('.card-header').text("Scene 1: Overview");
+                $('.card-header').text("Overview");
                 
                 document.getElementById("scene_description").innerHTML = "In order to investigate the connection between the change in population size and the "+
                 "change in the difference in income between the richest and poorest people we have constructed a graph plotting "+
