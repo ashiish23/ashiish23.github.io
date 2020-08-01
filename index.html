@@ -20,7 +20,7 @@
             font-family: Georgia, "Times New Roman", Times, serif;;
         }
 
-        circle#China, circle#Nigeria, circle[id="United States"] {
+        circle#China, circle#India, circle[id="United States"] {
             fill: chocolate;
         }
 
@@ -69,7 +69,7 @@
 
         function numberToCountry(subSceneNum) {
             if(subSceneNum==1){ country = "China"; }
-            if(subSceneNum==2){ country = "Nigeria"; }
+            if(subSceneNum==2){ country = "India"; }
             if(subSceneNum==3){ country = "United States"; }
         }
 
@@ -264,13 +264,13 @@
 
                 /*******  Anotations  ********/
 
-                    // Nigeria
+                    // India
 
-                var annotation_Nigeria = [
+                var annotation_India = [
                     {
                         note: {
                             label: "hight changes in population but low changes in income difference",
-                            title: "Nigeria",
+                            title: "India",
                             align: "left",
                         },
                         connector: {
@@ -289,7 +289,7 @@
 
                 // Add annotation to the chart
                 const makeAnnotations1 = d3.annotation()
-                    .annotations(annotation_Nigeria);
+                    .annotations(annotation_India);
                 
                 d3.select("svg")
                     .append("g")
