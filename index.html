@@ -416,10 +416,10 @@
                     .selectAll()
                     .data(data_max)
                     .enter().append("rect")
-                    .attr("class", "orange-bar")
+                    .attr("class", "OliveGreen-bar")
                     .attr("x", d => x(d.x) + x.bandwidth() / 2 - barWidth / 2)
                     .attr("y", d => graph_height - h(d.y))
-                    .attr('fill', 'orange')
+                    .attr('fill', '#666600')
                     .attr("width", barWidth)
                     .attr("height", d => h(d.y));
                 
@@ -514,14 +514,14 @@
 
                 /**** Tooltips ****/
 
-                var tooltip_orange = d3.select(".card-body")
+                var tooltip_OliveGreen = d3.select(".card-body")
                     .append("div")
                     .style("position", "absolute")
                     .style("font-size", "12px")
                     .style("visibility", "hidden");
 
                 var mousemove = function(d) {
-                    tooltip_orange
+                    tooltip_OliveGreen
                         .html("income difference: $" + d.y)
                         .style("left", (d3.mouse(this)[0] + 80) + "px")
                         .style("top", (d3.mouse(this)[1] + 130) + "px")
@@ -530,12 +530,12 @@
                         .style("border-radius", "5px")
                 }
   
-                // Bind tooltips to line orange bars
+                // Bind tooltips to line OliveGreen bars
 
-                d3.selectAll(".orange-bar")
-                    .on("mouseover", function(){return tooltip_orange.style("visibility", "visible");})
+                d3.selectAll(".OliveGreen-bar")
+                    .on("mouseover", function(){return tooltip_OliveGreen.style("visibility", "visible");})
                     .on("mousemove", mousemove )
-                    .on("mouseout", function(){return tooltip_orange.style("visibility", "hidden");});
+                    .on("mouseout", function(){return tooltip_OliveGreen.style("visibility", "hidden");});
 
                 
                 var tooltip_dot = d3.select(".card-body")
@@ -563,14 +563,14 @@
                 
                 /*******  Anotations  ********/
 
-                    // Orange bar
+                    // OliveGreen bar
 
-                var makeAnnotationsOrangeBar = d3.annotation()
+                var makeAnnotationsOliveGreenBar = d3.annotation()
                     .annotations(data_max.map((d,i) => {
                         if (i == 3) {
                             return {
                                 note: {
-                                    label: "orange box - income of the richest, blue box - income of the poorest people",
+                                    label: "OliveGreen box - income of the richest, blue box - income of the poorest people",
                                     //title: d.x,
                                     align: "right",
                                     orientation: "fixed"
@@ -594,7 +594,7 @@
 
                 d3.select("svg")
                     .append("g")
-                    .call(makeAnnotationsOrangeBar);
+                    .call(makeAnnotationsOliveGreenBar);
 
                 // Line chart
 
