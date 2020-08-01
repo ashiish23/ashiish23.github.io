@@ -1,159 +1,161 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS 498 DV Final Project by Kevin Mackie</title>
 
-    <title>The Crypto Craze</title>
+    <!-- The following two libraries are imported only for compatibility with Internet Explorer, due to a bug
+    that caused incompatibility with features of d3. See -->
+    <script src="https://cdn.jsdelivr.net/bluebird/3.5.0/bluebird.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 
-    <meta name="description" content="Final Project for UIUC's CS498 Data Visualizaton with Dr. John Hart">
-    <meta name="author" content="Jonathan Chang">
+    <!-- Bootstrap, jquery, and d3 are the only external libraries used -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v5.js"></script>
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <link rel="stylesheet" href="reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="reveal.js/css/theme/beige.css">
-    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css" />
-    <!-- <link rel="stylesheet" href="reveal.js/css/custom-gc.css" /> -->
+    <!-- Internal project inclusions -->
+    <link rel="stylesheet" type="text/css" href="chart.css"/>
+    <script type="text/javascript" src="globals.js"></script>
+    <script type="text/javascript" src="annotations.js"></script>
+    <script type="text/javascript" src="animations.js"></script>
+    <script type="text/javascript" src="statemachine.js"></script>
+    <script type="text/javascript" src="loaddata.js"></script>
 </head>
 
-<body>
-<div class="reveal">
-<div class="slides">
+<body onload="initializeVisualization()">
 
-<!-- Title Slide -->
-<section>
-    <h1>The Crypto Craze</h1>
-    <h3>Jonathan Chang</h3>
-    <h4>CS498 Data Visualization</h4>
-
-</section>
-
-<!-- About this visualization -->
-<section>
-    <h2>About the visualization</h2>
-    <p align="left"><small><strong>Hybrid Structure</strong> - I chose to build an interactive slideshow using the reveal.js presentation framework. By using the right and left arrows on the keyboard or clicking the button, the reader is able to move around between various scenes while keeping track of progress by looking at the bar at the very bottom. The user is also able to interact with the d3 charts as described later on.</small></p>
-    <p align="left"><small><strong>Scenes</strong> - The slides in my slideshow correspond to scenes, and I used a consistent beige background template styled by css. To tell my story, I ordered my charts with the bubble chart first to give an overview of the top cryptocurrencies before diving deeper with the line graphs to portray exact price patterns of some of the most prominent cryptos.</small></p>
-    <p align="left"><small><strong>Annotations</strong> - In my line graph I used two annotations to highlight 2 of the most significant events in the Bitcoin timeline. The first event was the peak that Bitcoin enjoyed towards the end of 2017 when the price of a single Bitcoin neared $20K! The other event was when the Bitcoin fork occurred in August 2017, giving rise to Bitcoin Cash, and we can clearly see the (red) BCH line come up at this time. The annotations are cleared when the user leaves this particular scene.</small></p>
-</section>
-<section>
-    <h2>About the visualization (cont.)</h2>
-    <p align="left"><small><strong>Parameters</strong> - There are several parameters that my visualization utilizes such as the current slide state in the context of the overall presentation (slide number), whether or not a particular line should be displayed based on whether or not the symbol has been clicked, and whether or not a mouseover has occurred for the bubble chart.</small></p>
-    <p align="left"><small><strong>Triggers</strong> - There are a few triggers that my narrative visualization utilizes. As mentioned above, the pressing right/left arrow key or clicking the corresponding button will cause the slide to advance or go back. For the bubble chart, mousing over each bubble will display a textbox with the name and actual marketcap value. Finally, clicking the crypto symbol for my line graph causes the corresponding crypto graph to be shown or hidden. There is a note at the bottom of the slides containing charts which indicate the available triggers.</small></p>
-</section>
-
-<!-- The Dataset -->
-<section>
-    <h2>The Dataset</h2>
-    <p align="left"><small>I used the public dataset titled <a href="https://www.kaggle.com/jessevent/all-crypto-currencies/data">Every Cryptocurrency Daily Market Price</a>
-      from Kaggle containing daily market data (e.g. open/close price, volume, market cap, etc…) of most cryptocurrency tokens since April 2013.</small></p>
-    <p align="left"><small>For the bubble chart, I prepared my dataset by taking the most recent date for which data was collected (June 6, 2018) and filtering out the top 25 cryptos by marketcap.</small></p>
-    <p align="left"><small>For the line graph, I selected 5 of the most popular cryptos: Bitcoin, Ethereum, Ripple, Bitcoin Cash, and Litecoin, and used their closing price for my final dataset.</small></p>
-</section>
-
-<!-- Chart 1 -->
-<section>
-    <h3>Top 25 Cryptos (marketcap)</h3>
-    <div class="row no-margin-top">
-        <div class="fig-container no-margin-top" data-file="d3-fig/bubble_crypto.html"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-6" align="left">
+            <h3>Research on SCADA Cybersecurity</h3>
+            CS 498 Data Visualization Summer 2018 - Final Project by Kevin Mackie
+        </div>
+        <div class="col-xs-4" align="right"><p></p><p><a type="button" class="btn btn-default" href="about.html" role="button" target="_blank">About the Visualization</a></p>
+        </div>
+        <div class="col-xs-2">
+        </div>
     </div>
-    <div class="no-margin-top" style="position: absolute; top: 650px">
-        <p><small>Mouseover displays marketcap value (as of June 6, 2018).</small></p>
+    <div class="row">
+        <div class="col-xs-3">
+            <p></p>
+            <button type="button" class="btn btn-default disabled toggle-enabled-1" onclick="frameBack()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <button type="button" class="btn btn-default active toggle-active-1" onclick="jumpToFrame(0)">0</button>
+            <button type="button" class="btn btn-default toggle-active-1 toggle-active-2" onclick="jumpToFrame(1)">1</button>
+            <button type="button" class="btn btn-default toggle-active-2 toggle-active-3" onclick="jumpToFrame(2)">2</button>
+            <button type="button" class="btn btn-default toggle-active-3 toggle-active-4" onclick="jumpToFrame(3)">3</button>
+            <button type="button" class="btn btn-default toggle-active-4" onclick="jumpToFrame(4)">4</button>
+            <button type="button" class="btn btn-default toggle-active-4 toggle-enabled-4" onclick="frameForward()">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+        <div class="col-xs-7">
+            <div class="toggle-visibility-1"><h1 align="center">Introduction</h1></div>
+            <div class="invisible toggle-visibility-1 toggle-visibility-2"><h1 align="center">A Modest Amount of Literature: Pre-2002</h1></div>
+            <div class="invisible toggle-visibility-2 toggle-visibility-3" align="center"><h1>The Post 9-11 Increase: 2002 to Today</h1></div>
+            <div class="invisible toggle-visibility-3 toggle-visibility-4" align="center"><h1>The Pace of Citations</h1></div>
+            <div class="invisible toggle-visibility-4" align="center"><h1>Explore For Yourself</h1></div>
+        </div>
+        <div class="col-xs-2">
+        </div>
+
     </div>
-</section>
-
-<!-- Chart 2 -->
-<section>
-    <h3>Crypto Price Graph</h3>
-    <div class="row no-margin-top">
-        <div class="fig-container no-margin-top" data-file="d3-fig/line_crypto.html"></div>
+    <div class="row narrative">
+        <div class="col-xs-3">
+            <div id="n-00" class="visible toggle-visibility-1">
+                <h4>When You're Ready ...</h4>
+                Click the above right arrow button to navigate to the next scene in our story.
+            </div>
+            <div id="n-01" class="invisible toggle-visibility-1 toggle-visibility-2">
+                <h3>Early Research Landscape</h3>
+                <p>The graph on the right shows statistics of SCADA cybersecurity research published prior to 2002.
+                </p>
+                <p>The amount of research is relatively small with a trend of slight growth over time.</p>
+                <p>See the next slide for research trends after 2001.</p>
+            </div>
+            <div id="n-02" class="invisible toggle-visibility-2 toggle-visibility-3">
+                <h3>Post 9-11 Increase in Research</h3>
+                <p>The trend shows an abrupt increase in SCADA cybersecurity reserach following the attacks of
+                    9-11. Correlation does not imply causation, and more detailed research would be needed to
+                    determine possible causes of this increase in research activity.
+                </p>
+            </div>
+            <div id="n-03" class="invisible toggle-visibility-3 toggle-visibility-4">
+                <h3>Research Citations</h3>
+                <p>We see here the total citations to date for papers published in each year.</p>
+                <p>The general ratio is approximately 10-20 citations per paper.<p>
+                <p>The drop-off in citations after 2013 suggests that it takes more than 5 years for the full
+                    effect of research to be reached.</p>
+                <p>There is an interesting jump in research citations in 2010-2011.</p>
+                <p>We now proceed to the interactive portion of the narrative, where you will be able
+                    to explore further into the SCADA cybersecurity research literature.</p>
+            </div>
+            <div id="n-04" class="invisible toggle-visibility-4 toggle-visibility-5">
+                <h4>Here's what you can do:</h4>
+                <ul>
+                    <li>Select papers by clicking and dragging on the chart. <b>The papers will be listed in the table below</b></li>
+                    <li>Hover over publication types on the legend to highlight papers of that type on the chart</li>
+                    <li>Filter by type by clicking the checkboxes in the legend</li>
+                    <li>Click titles in the table to open a link (separate webpage) to the paper itself</li>
+                </ul>
+                <div>
+                    <table class="filter-category invisible toggle-visibility-4" align="right">
+                        <thead>
+                        <tr>
+                            <td colspan="3" align="center">Type Legend</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div id="loading-message">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h4 align="center">Loading visualization data. Please wait ...</h4>
+            </div>
+            <div id="chart-div" class="invisible" style="position: relative; width: 900px; height: 500px;">
+                <svg id="chart-id" class="chart" style="position: absolute; z-index: 1; top: 0; left: 0; opacity: 0">
+                </svg>
+            </div>
+        </div>
+        <div class="col-xs-2"></div>
     </div>
-    <div class="no-margin-top" style="position: absolute; top: 550px">
-        <p><small>Note: Click the crypto symbol to hide/show the corresponding line graph.</small></p>
+    <div class="row">
+        <hr class="visible toggle-visibility-4">
+        <div class="row invisible toggle-visibility-4">
+            <div class="col-xs-1">
+            </div>
+            <div class="col-xs-10" align="left">
+                <table class="table table-condensed table-striped publications">
+                    <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Type</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Citations</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-1">
+            </div>
+        </div>
     </div>
-</section>
-
-<!-- Chart 2 -->
-<section>
-    <h2>Analysis</h2>
-    <p align="left"><small>The bubble chart shows us the relative size in marketcap of the top 25 major cryptocurrencies. We can see for instance, that Bitcoin takes up so much market space that most of the other cryptocurrencies (even combined) could fit into its bubble. Other big cryptocurrencies like Ethereum and Ripple and Bitcoin Cash stand out.</small></p>
-    <p align="left"><small>The price graph shows us some interesting trends regarding price movement of 5 major cryptos. For instance, the 5 cryptos seem to mirror the price movement of each other with Bitcoin often leading the way. The annotations point out 2 major events in Bitcoin’s timeline. In December 2017, Bitcoin reached a peak of nearly $20K, probably as Bitcoin futures were introduced to Wall Street. Meanwhile, in August 2017, there was a fork of Bitcoin that occurred called Segwit, which gave rise to Bitcoin Cash, which is where we see the beginning of the BCH line graph.</small></p>
-</section>
-
-<!-- References Slide -->
-<section>
-    <h2>References</h2>
-    <ol>
-        <li><a href="https://github.com/hakimel/reveal.js/">HTML Presentation Framework - reveal.js</a></li>
-        <li><a href="https://bl.ocks.org/mbostock/4063269">Mike Bostock's Bubble Chart example</a></li>
-        <li><a href="https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4">Multi-line graph example by d3noob</a></li>
-        <li><a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html">Understanding adding axis-labels and positioning for annotations</a></li>
-    </ol>
-</section>
-
-<!-- Conclusion Slide -->
-<section>
-    <h1>Thanks for reading!</h1>
-    <h3><a href="https://github.com/jonchang03/DataVizFinal/">Source Code</a><h3>
-</section>
-
-
-</div> <!-- slides -->
-</div> <!-- Reveal -->
-
-<script src="reveal.js/lib/js/head.min.js"></script>
-<script src="reveal.js/js/reveal.js"></script>
-<script>
-// Full list of configuration options available at:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-    controls: true,
-    progress: true,
-    history: true,
-    center: false,
-    transition: 'fade',
-
-    // // optional configurations for reveald3
-    reveald3: {
-
-         // If the previous slide is a slide further in the deck (i.e. we come back to
-         // slide from the next slide), by default the last fragment transition will be
-         // triggered to to get the last state of the visualization and simulate the
-         // the state the simulation was in when we left the slide. This can be
-         // discarded.
-         runLastState: true, //default true
-
-         // Specifies if iframes (that host the visualization) have to be kept
-         // on the slide once the slide is not active anymore (e.g.: navigating
-         // to next slide). If true, the current visualization will be kept
-         // active so that its state will be the one displayed if we navigate
-         // back to the slide. This is false by default, as it can be the source
-         // of performance issues if complex visualizations (e.g. force layout)
-         // are displayed and kept in the background.
-         // Also, see the runLastState option as a simpler less
-         // resource-demanding alternative.
-         keepIframe: false, // default: false
-
-
-         // This will prefix the path attributes of the source html paths with the given path.
-         // (by default "src" if set to true or with the specified path if string)
-         mapPath: false, // default: false
-
-         // If true, will try to locate the file at a fallback url without the mapPath prefix in case no file is found
-         // at the stipulated url with mapPath
-         tryFallbackURL: false, //default false
-    },
-
-    // Reveal.js plugins
-    dependencies: [
-
-        { src: 'reveal.js/reveald3.js' },
-
-    ]
-});
-</script>
-
+</div>
 </body>
 </html>
