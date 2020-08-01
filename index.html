@@ -39,7 +39,7 @@
         <div class="card">
             <strong>
                 <div id="scene_title" class="card-header">
-                    Overview
+                    Scene 1: Overview
                 </div>
             </strong>
             <div class="card-body">
@@ -105,7 +105,7 @@
             d3.select("svg").html('');
             
             if (sceneNum == 1) {
-                $('.card-header').text("Overview");
+                $('.card-header').text("Scene 1: Overview");
                 
                 document.getElementById("scene_description").innerHTML = "Scatter chart is plotted to visulaize relation between the population change and the "+
                 "change in the income differnce between the wealthy and poor over the period of 10 years (from 1988 to 2008)."+
@@ -125,7 +125,7 @@
             }
 
             if (sceneNum == 2) {
-                $('.card-header').text("Absolute values comparison for " + country);
+                $('.card-header').text("Scene 2 - Subscene "+currentSubScene+": absolute values chart for " + country);
                 
                 document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the absolute level of change in population and the absolute level of change in income between the poor and rich segments of the population.";
                 document.getElementById('subscene_prev_btn').style.visibility = "visible";
@@ -138,7 +138,7 @@
             }
 
             if (sceneNum == 3) {
-                $('.card-header').text("Relative values comparison for " + country);
+                $('.card-header').text("Scene 3 - Subscene "+currentSubScene+": Relative values chart for " + country);
                 
                 document.getElementById("scene_description").innerHTML = "As you can see, this graph clearly shows that there is no direct relationship between the relative level of change in population and the relative level of change in income between the poor and rich segments of the population.";
                 document.getElementById('subscene_prev_btn').style.visibility = "visible";
