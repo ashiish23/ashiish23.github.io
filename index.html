@@ -1,7 +1,159 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+<head>
+    <meta charset="utf-8">
+
+    <title>The Crypto Craze</title>
+
+    <meta name="description" content="Final Project for UIUC's CS498 Data Visualizaton with Dr. John Hart">
+    <meta name="author" content="Jonathan Chang">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/beige.css">
+    <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css" />
+    <!-- <link rel="stylesheet" href="reveal.js/css/custom-gc.css" /> -->
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<div class="reveal">
+<div class="slides">
+
+<!-- Title Slide -->
+<section>
+    <h1>The Crypto Craze</h1>
+    <h3>Jonathan Chang</h3>
+    <h4>CS498 Data Visualization</h4>
+
+</section>
+
+<!-- About this visualization -->
+<section>
+    <h2>About the visualization</h2>
+    <p align="left"><small><strong>Hybrid Structure</strong> - I chose to build an interactive slideshow using the reveal.js presentation framework. By using the right and left arrows on the keyboard or clicking the button, the reader is able to move around between various scenes while keeping track of progress by looking at the bar at the very bottom. The user is also able to interact with the d3 charts as described later on.</small></p>
+    <p align="left"><small><strong>Scenes</strong> - The slides in my slideshow correspond to scenes, and I used a consistent beige background template styled by css. To tell my story, I ordered my charts with the bubble chart first to give an overview of the top cryptocurrencies before diving deeper with the line graphs to portray exact price patterns of some of the most prominent cryptos.</small></p>
+    <p align="left"><small><strong>Annotations</strong> - In my line graph I used two annotations to highlight 2 of the most significant events in the Bitcoin timeline. The first event was the peak that Bitcoin enjoyed towards the end of 2017 when the price of a single Bitcoin neared $20K! The other event was when the Bitcoin fork occurred in August 2017, giving rise to Bitcoin Cash, and we can clearly see the (red) BCH line come up at this time. The annotations are cleared when the user leaves this particular scene.</small></p>
+</section>
+<section>
+    <h2>About the visualization (cont.)</h2>
+    <p align="left"><small><strong>Parameters</strong> - There are several parameters that my visualization utilizes such as the current slide state in the context of the overall presentation (slide number), whether or not a particular line should be displayed based on whether or not the symbol has been clicked, and whether or not a mouseover has occurred for the bubble chart.</small></p>
+    <p align="left"><small><strong>Triggers</strong> - There are a few triggers that my narrative visualization utilizes. As mentioned above, the pressing right/left arrow key or clicking the corresponding button will cause the slide to advance or go back. For the bubble chart, mousing over each bubble will display a textbox with the name and actual marketcap value. Finally, clicking the crypto symbol for my line graph causes the corresponding crypto graph to be shown or hidden. There is a note at the bottom of the slides containing charts which indicate the available triggers.</small></p>
+</section>
+
+<!-- The Dataset -->
+<section>
+    <h2>The Dataset</h2>
+    <p align="left"><small>I used the public dataset titled <a href="https://www.kaggle.com/jessevent/all-crypto-currencies/data">Every Cryptocurrency Daily Market Price</a>
+      from Kaggle containing daily market data (e.g. open/close price, volume, market cap, etc…) of most cryptocurrency tokens since April 2013.</small></p>
+    <p align="left"><small>For the bubble chart, I prepared my dataset by taking the most recent date for which data was collected (June 6, 2018) and filtering out the top 25 cryptos by marketcap.</small></p>
+    <p align="left"><small>For the line graph, I selected 5 of the most popular cryptos: Bitcoin, Ethereum, Ripple, Bitcoin Cash, and Litecoin, and used their closing price for my final dataset.</small></p>
+</section>
+
+<!-- Chart 1 -->
+<section>
+    <h3>Top 25 Cryptos (marketcap)</h3>
+    <div class="row no-margin-top">
+        <div class="fig-container no-margin-top" data-file="d3-fig/bubble_crypto.html"></div>
+    </div>
+    <div class="no-margin-top" style="position: absolute; top: 650px">
+        <p><small>Mouseover displays marketcap value (as of June 6, 2018).</small></p>
+    </div>
+</section>
+
+<!-- Chart 2 -->
+<section>
+    <h3>Crypto Price Graph</h3>
+    <div class="row no-margin-top">
+        <div class="fig-container no-margin-top" data-file="d3-fig/line_crypto.html"></div>
+    </div>
+    <div class="no-margin-top" style="position: absolute; top: 550px">
+        <p><small>Note: Click the crypto symbol to hide/show the corresponding line graph.</small></p>
+    </div>
+</section>
+
+<!-- Chart 2 -->
+<section>
+    <h2>Analysis</h2>
+    <p align="left"><small>The bubble chart shows us the relative size in marketcap of the top 25 major cryptocurrencies. We can see for instance, that Bitcoin takes up so much market space that most of the other cryptocurrencies (even combined) could fit into its bubble. Other big cryptocurrencies like Ethereum and Ripple and Bitcoin Cash stand out.</small></p>
+    <p align="left"><small>The price graph shows us some interesting trends regarding price movement of 5 major cryptos. For instance, the 5 cryptos seem to mirror the price movement of each other with Bitcoin often leading the way. The annotations point out 2 major events in Bitcoin’s timeline. In December 2017, Bitcoin reached a peak of nearly $20K, probably as Bitcoin futures were introduced to Wall Street. Meanwhile, in August 2017, there was a fork of Bitcoin that occurred called Segwit, which gave rise to Bitcoin Cash, which is where we see the beginning of the BCH line graph.</small></p>
+</section>
+
+<!-- References Slide -->
+<section>
+    <h2>References</h2>
+    <ol>
+        <li><a href="https://github.com/hakimel/reveal.js/">HTML Presentation Framework - reveal.js</a></li>
+        <li><a href="https://bl.ocks.org/mbostock/4063269">Mike Bostock's Bubble Chart example</a></li>
+        <li><a href="https://bl.ocks.org/d3noob/08af723fe615c08f9536f656b55755b4">Multi-line graph example by d3noob</a></li>
+        <li><a href="http://www.d3noob.org/2012/12/adding-axis-labels-to-d3js-graph.html">Understanding adding axis-labels and positioning for annotations</a></li>
+    </ol>
+</section>
+
+<!-- Conclusion Slide -->
+<section>
+    <h1>Thanks for reading!</h1>
+    <h3><a href="https://github.com/jonchang03/DataVizFinal/">Source Code</a><h3>
+</section>
+
+
+</div> <!-- slides -->
+</div> <!-- Reveal -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+<script>
+// Full list of configuration options available at:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: false,
+    transition: 'fade',
+
+    // // optional configurations for reveald3
+    reveald3: {
+
+         // If the previous slide is a slide further in the deck (i.e. we come back to
+         // slide from the next slide), by default the last fragment transition will be
+         // triggered to to get the last state of the visualization and simulate the
+         // the state the simulation was in when we left the slide. This can be
+         // discarded.
+         runLastState: true, //default true
+
+         // Specifies if iframes (that host the visualization) have to be kept
+         // on the slide once the slide is not active anymore (e.g.: navigating
+         // to next slide). If true, the current visualization will be kept
+         // active so that its state will be the one displayed if we navigate
+         // back to the slide. This is false by default, as it can be the source
+         // of performance issues if complex visualizations (e.g. force layout)
+         // are displayed and kept in the background.
+         // Also, see the runLastState option as a simpler less
+         // resource-demanding alternative.
+         keepIframe: false, // default: false
+
+
+         // This will prefix the path attributes of the source html paths with the given path.
+         // (by default "src" if set to true or with the specified path if string)
+         mapPath: false, // default: false
+
+         // If true, will try to locate the file at a fallback url without the mapPath prefix in case no file is found
+         // at the stipulated url with mapPath
+         tryFallbackURL: false, //default false
+    },
+
+    // Reveal.js plugins
+    dependencies: [
+
+        { src: 'reveal.js/reveald3.js' },
+
+    ]
+});
+</script>
+
 </body>
 </html>
